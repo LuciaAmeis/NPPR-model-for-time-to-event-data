@@ -316,7 +316,7 @@ simulPHWeib_SC<-function(N,param, rateC,prob, b){#N is the number of participant
     Nn<-length(single_expr)
     
     #draw survival times according to group assignment
-    survival<-rweibull(n=Nn,shape=a1,scale = a2*exp(b*pers_expr))
+    survival<-rweibull(n=Nn,shape=a1,scale = a2*(exp(b*pers_expr)^(1/a1)))
     
     #add to the subdataset
     daten_single_expr<-data.frame(expressions=single_expr,survival=survival)
