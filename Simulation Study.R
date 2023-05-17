@@ -63,7 +63,7 @@ negloglike_Weib<-function(param, daten,col){
 #Fitting a Weibull distribution to the control group of the data set
 #starting values were determined by plotting  different Weibull distributions 
 #against the KM-estimated CDF of the control group
-ML_0<-optim(par=c(1.2,70),fn=negloglike_Weib,daten=DapaHF_0,col=c(col_time=3,col_cens=1),lower = c(0, 0))
+ML_0<-optim(par=c(1.2,70),fn=negloglike_Weib,daten=subset(DapaHF,DapaHF$Arm==0),col=c(col_time=3,col_cens=1),lower = c(0, 0))
 
 
 
@@ -130,7 +130,7 @@ negloglikeEU<-function(param, daten,col){
 #Fitting a EU distribution to the control group of the data set
 #starting values were determined by plotting  different EU distributions 
 #against the KM-estimated CDF of the control group
-ML_EU<-optim(par=c(0.8,130),negloglikeEU,daten=DapaHF_0,col=c(col_time=3,col_cens=1),method="Nelder-Mead")
+ML_EU<-optim(par=c(0.8,130),negloglikeEU,daten=subset(DapaHF,DapaHF$Arm==0),col=c(col_time=3,col_cens=1),method="Nelder-Mead")
 
 
 
@@ -376,7 +376,7 @@ simulPHWeib_SC_censrate<-function(N,param, rateC,prob, b){
     
     Nn<-length(single_expr)
     
-    survival<-rweibull(n=Nn,shape=a1,scale = a2*exp(b*pers_expr))
+    survival<-rweibull(n=Nn,shape=a1,scale = a2*(exp(b*pers_expr)^(1/a1)))
     
     daten_single_expr<-data.frame(expressions=single_expr,survival=survival)
     
@@ -1556,7 +1556,7 @@ sum(is.na(Est_PH_500_DapaHF_0_censSC70))
 range(Est_PH_500_DapaHF_0_censSC70)
 sum(is.na(Est_PH_100_DapaHF_0_censSC70))
 range(Est_PH_100_DapaHF_0_censSC70)
-sum(is.na(Est_PH_50_DapaHF_0_censSC70))#8
+sum(is.na(Est_PH_50_DapaHF_0_censSC70))#6
 which(ifelse(is.na(Est_PH_50_DapaHF_0_censSC70)==T,1,0)==1)
 Sim_PH_50_DapaHF_0_censSC70_nna<-Sim_PH_50_DapaHF_0_censSC70[!is.na(Est_PH_50_DapaHF_0_censSC70)]
 Est_PH_50_DapaHF_0_censSC70_nna<-Est_PH_50_DapaHF_0_censSC70[!is.na(Est_PH_50_DapaHF_0_censSC70)]
@@ -1585,7 +1585,7 @@ sum(is.na(Est_PH_500_DapaHF_.5_censSC70))
 range(Est_PH_500_DapaHF_.5_censSC70)
 sum(is.na(Est_PH_100_DapaHF_.5_censSC70))
 range(Est_PH_100_DapaHF_.5_censSC70)
-sum(is.na(Est_PH_50_DapaHF_.5_censSC70))#10
+sum(is.na(Est_PH_50_DapaHF_.5_censSC70))#9
 which(ifelse(is.na(Est_PH_50_DapaHF_.5_censSC70)==T,1,0)==1)
 Sim_PH_50_DapaHF_.5_censSC70_nna<-Sim_PH_50_DapaHF_.5_censSC70[!is.na(Est_PH_50_DapaHF_.5_censSC70)]
 Est_PH_50_DapaHF_.5_censSC70_nna<-Est_PH_50_DapaHF_.5_censSC70[!is.na(Est_PH_50_DapaHF_.5_censSC70)]
@@ -1614,7 +1614,7 @@ sum(is.na(Est_PH_500_DapaHF_n.5_censSC70))
 range(Est_PH_500_DapaHF_n.5_censSC70)
 sum(is.na(Est_PH_100_DapaHF_n.5_censSC70))
 range(Est_PH_100_DapaHF_n.5_censSC70)
-sum(is.na(Est_PH_50_DapaHF_n.5_censSC70))#8
+sum(is.na(Est_PH_50_DapaHF_n.5_censSC70))#11
 which(ifelse(is.na(Est_PH_50_DapaHF_n.5_censSC70)==T,1,0)==1)
 Sim_PH_50_DapaHF_n.5_censSC70_nna<-Sim_PH_50_DapaHF_n.5_censSC70[!is.na(Est_PH_50_DapaHF_n.5_censSC70)]
 Est_PH_50_DapaHF_n.5_censSC70_nna<-Est_PH_50_DapaHF_n.5_censSC70[!is.na(Est_PH_50_DapaHF_n.5_censSC70)]
@@ -1643,7 +1643,7 @@ sum(is.na(Est_PH_500_DapaHF_.25_censSC70))
 range(Est_PH_500_DapaHF_.25_censSC70)
 sum(is.na(Est_PH_100_DapaHF_.25_censSC70))
 range(Est_PH_100_DapaHF_.25_censSC70)
-sum(is.na(Est_PH_50_DapaHF_.25_censSC70))#2
+sum(is.na(Est_PH_50_DapaHF_.25_censSC70))#7
 which(ifelse(is.na(Est_PH_50_DapaHF_.25_censSC70)==T,1,0)==1)
 Sim_PH_50_DapaHF_.25_censSC70_nna<-Sim_PH_50_DapaHF_.25_censSC70[!is.na(Est_PH_50_DapaHF_.25_censSC70)]
 Est_PH_50_DapaHF_.25_censSC70_nna<-Est_PH_50_DapaHF_.25_censSC70[!is.na(Est_PH_50_DapaHF_.25_censSC70)]
@@ -1672,7 +1672,7 @@ sum(is.na(Est_PH_500_DapaHF_n.25_censSC70))
 range(Est_PH_500_DapaHF_n.25_censSC70)
 sum(is.na(Est_PH_100_DapaHF_n.25_censSC70))
 range(Est_PH_100_DapaHF_n.25_censSC70)
-sum(is.na(Est_PH_50_DapaHF_n.25_censSC70))#11
+sum(is.na(Est_PH_50_DapaHF_n.25_censSC70))#7
 which(ifelse(is.na(Est_PH_50_DapaHF_n.25_censSC70)==T,1,0)==1)
 Sim_PH_50_DapaHF_n.25_censSC70_nna<-Sim_PH_50_DapaHF_n.25_censSC70[!is.na(Est_PH_50_DapaHF_n.25_censSC70)]
 Est_PH_50_DapaHF_n.25_censSC70_nna<-Est_PH_50_DapaHF_n.25_censSC70[!is.na(Est_PH_50_DapaHF_n.25_censSC70)]
