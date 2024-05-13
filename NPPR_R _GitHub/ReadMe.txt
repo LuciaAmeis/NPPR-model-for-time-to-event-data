@@ -7,8 +7,6 @@ For questions or comments please contact K. Moellenhoff at the University of Col
 kathrin.moellenhoff@uni-koeln.de
 
 This code has been written on R version 4.3.0. 
-Of note, the results regarding the NPPR estimator for PR and PH data as well as the PPR estimator for PR data (Tables 4, 5 for Bias and MSE, Tables C, D for Coverage and Tables G, H for numerical robustness) were generated on R version 4.2.2. Therefore, when run on R version 4.3.0, the results may differ slightly. The simulations to reproduce these results were provided in the subfolder ‘old_simulation’. Please refer to the last section of the file NPPR_simulation.RData for details. 
-The tables as saved in the respective folder present the data as listed in the manuscript. 
 
 For each file (NPPR_base.R, NPPR_simulation.R, NPPR_simulation_results.R, NPPR_case_study.R, NPPR_plot_generation.R and NPPR_master.R) please start with setting the working directory to the same location. Precisely, set it to the storage location of the file NPPR_base.R. Do so e.g. by using the function setwd() and inserting the address of the respective folder (e.g. setwd("C:/Users/example/storage_location")). We prepared the function for this (line 66 in the file NPPR_master.R and line 36 in all others). Here, substitute "Please define" for the correct address and remove the hashtag at the beginning of the line. 
 
@@ -28,4 +26,4 @@ The folder 'data' contains the both DapaHF datasets used in the manuscript. The 
 
 The file NPPR_master.R contains the master script and can be used to run all other files without manually opening them.
 
-For the .RData files including the older simulations we refer to Zenodo:
+For the .RData files including the older simulations we refer to Zenodo: https://zenodo.org/records/11103494
